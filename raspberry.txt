@@ -1,0 +1,60 @@
+sudo vi /etc/apt/sources.list
+
+deb http://mirrors.neusoft.edu.cn/raspbian/raspbian/ wheezy main contrib non-free rpi
+deb-src http://mirrors.neusoft.edu.cn/raspbian/raspbian/ wheezy main contrib non-free rpi
+
+deb http://mirrors.neusoft.edu.cn/raspbian/raspbian/ jessie main contrib non-free rpi
+deb-src http://mirrors.neusoft.edu.cn/raspbian/raspbian/ jessie main contrib non-free rpi
+
+
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install scim-pinyin
+sudo apt-get install ttf-wqy-zenhei
+sudo apt-get install python-dev
+sudo apt-get install python3-dev
+sudo apt-get install libportaudio0 libportaudio2 libportaudiocpp0 portaudio19-dev
+sudo apt-get install python-rpi.gpio
+sudo apt-get install python-pyaudio
+sudo apt-get install python-pygame
+sudo apt-get install python-requests
+sudo apt-get install python-opencv
+sudo apt-get install easy_install pip
+sudo apt-get install python-setuptools python-pip
+sudo pip install --upgrade requests
+sudo pip install coloredlogs
+
+#i2c
+sudo vi /etc/modules
+i2c-bcm2708
+i2c-dev
+sudo apt-get install i2c-tools
+sudo apt-get install python-smbus
+git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git（BMP085）
+
+sudo vi /etc/fstab
+tmpfs   /robot/tmp    tmpfs   size=32m    0   0
+
+sudo apt-get install xrdp // romote control
+
+sudo apt-get install bluez pulseaudio-module-bluetooth python-gobject python-gobject-2 bluez-tools //blue tooth
+     apt-get install bluetooth bluez-utils bluez-compat blueman
+sudo usermod -a -G lp pi
+
+sudo apt-get install minidlna //dlna
+
+
+
+aplay /usr/share/sounds/alsa/Front_Center.wav -D sysdefault:CARD=1
+
+pyaudio.PyAudio().open(format=pyaudio.paInt16,
+                        rate=16000,
+                        channels=1, #change this to what your sound card supports
+                        input_device_index=1, #change this your input sound card index
+                        input=True,
+                        output=False,
+                        frames_per_buffer=1024)
+
+pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1, rate=16000,input=True, output=False,input_device_index=1,frames_per_buffer=1024)
+
+https://github.com/NeilYager/LittleSleeper/blob/master/audio_server.py
