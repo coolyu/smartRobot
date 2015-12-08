@@ -35,6 +35,11 @@ git clone https://github.com/adafruit/Adafruit-Raspberry-Pi-Python-Code.git（BM
 sudo vi /etc/fstab
 tmpfs   /robot/tmp    tmpfs   size=32m    0   0
 
+#驱动升级
+sudo apt-get install rpi-update
+sudo rpi-update
+
+
 sudo apt-get install xrdp // romote control
 
 sudo apt-get install bluez pulseaudio-module-bluetooth python-gobject python-gobject-2 bluez-tools //blue tooth
@@ -46,6 +51,7 @@ sudo apt-get install minidlna //dlna
 
 
 aplay /usr/share/sounds/alsa/Front_Center.wav -D sysdefault:CARD=1
+arecord -D plughw:1 --duration=10 -f cd -vv ~/rectest.wav
 
 pyaudio.PyAudio().open(format=pyaudio.paInt16,
                         rate=16000,
@@ -58,3 +64,8 @@ pyaudio.PyAudio().open(format=pyaudio.paInt16,
 pyaudio.PyAudio().open(format=pyaudio.paInt16, channels=1, rate=16000,input=True, output=False,input_device_index=1,frames_per_buffer=1024)
 
 https://github.com/NeilYager/LittleSleeper/blob/master/audio_server.py
+
+
+vi /usr/share/alsa/alsa.conf
+change the line "pcm.front cards.pcm.front"
+         to "pcm.front cards.pcm.default"
